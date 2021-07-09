@@ -1,0 +1,108 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<meta charset="UTF-8">
+<head>
+    <style>
+        body{
+            background-color:#ffffff;
+            margin: 0px;
+            height: 100%;
+            overflow: hidden;
+        }
+        #lottie{
+            background-color:#ffffff;
+            width:100%;
+            height:100%;
+            display:block;
+            overflow: hidden;
+            transform: translate3d(0,0,0);
+            text-align: center;
+            opacity: 1;
+
+        }
+
+        .font1 {
+            font-family: "BBC Reith Sans Meduim";
+            src: url("../fonts/BBCREITHSANS_MD.TTF")
+        } 
+        .font2 {
+            font-family: "BBC Reith Sans XBold";
+            src: url("../fonts/BBCREITHSANS_EXBD.TTF")
+        } 
+        .font3 {
+            font-family: "BBC Reith Sans Light";
+            src: url("../fonts/BBCREITHSANS_LT.TTF")
+        }
+        
+
+    </style>
+</head>
+<body>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.6.10/lottie.js" integrity="sha256-j5t8yIha0IKq9Oajlw+yBTISHC7DMh1AVIC3v1Ka6S8=" crossorigin="anonymous"></script>
+    <!-- animation data as js file -->
+    <!-- <script src="./footballAnimData.js"></script> -->
+
+<div id="lottie"></div>
+
+<script>
+    var params = {
+        container: document.getElementById('lottie'),
+        renderer: 'svg',
+        loop: false,
+        autoplay: false,
+        path: "./data.json",
+        // animationData: footballAnimData
+    };
+
+    var anim;
+    
+    anim = lottie.loadAnimation(params);
+
+    anim.addEventListener('DOMLoaded', function(e) { console.log('element loaded'); });
+
+    //anim.renderer.elements[0].elements[4].textContainer.textContent = "";
+
+    function playerStat(action, team, nameLine1, nameLine2, nameLine3, statLine1, statLine2, statLine3, programme){
+
+
+        if (action == "on")
+        {
+            anim.renderer.elements[0].elements[10].elements[1].updateDocumentData({t: team}, 0);
+
+            anim.renderer.elements[0].elements[4].elements[1].elements[0].elements[1].updateDocumentData({t: nameLine1}, 0);
+            anim.renderer.elements[0].elements[4].elements[1].elements[0].elements[3].updateDocumentData({t: nameLine2}, 0);
+            anim.renderer.elements[0].elements[4].elements[1].elements[0].elements[5].updateDocumentData({t: nameLine3}, 0);
+
+            anim.renderer.elements[0].elements[2].elements[1].elements[0].elements[1].updateDocumentData({t: statLine1}, 0);
+            anim.renderer.elements[0].elements[2].elements[1].elements[0].elements[3].updateDocumentData({t: statLine2}, 0);
+            anim.renderer.elements[0].elements[2].elements[1].elements[0].elements[5].updateDocumentData({t: statLine3}, 0);
+
+            anim.renderer.elements[0].elements[10].elements[2].updateDocumentData({t: programme}, 0);
+
+            anim.playSegments([0,200], true);
+            
+        }
+        if (action == "off")
+        {
+            anim.playSegments([230,249], true);
+            setTimeout(function()
+            {
+                anim.renderer.elements[0].elements[10].elements[1].textContent = "";
+
+                anim.renderer.elements[0].elements[4].elements[1].elements[0].elements[1].textContent = "";
+                anim.renderer.elements[0].elements[4].elements[1].elements[0].elements[3].textContent = "";
+                anim.renderer.elements[0].elements[4].elements[1].elements[0].elements[5].textContent = "";
+
+                anim.renderer.elements[0].elements[2].elements[1].elements[0].elements[1].textContent = "";
+                anim.renderer.elements[0].elements[2].elements[1].elements[0].elements[3].textContent = "";
+                anim.renderer.elements[0].elements[2].elements[1].elements[0].elements[5].textContent = "";
+
+                anim.renderer.elements[0].elements[10].elements[2].textContent = "";
+            }, 990);
+        }
+    }
+       
+
+</script>
+</body>
+</html>
